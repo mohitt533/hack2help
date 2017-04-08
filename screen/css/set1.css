@@ -3,7 +3,7 @@
 	z-index: 1;
 	display: inline-block;
 	margin: 1em;
-	max-width: 350px;
+	max-width: 300px;
 	width: calc(100% - 2em);
 	vertical-align: top;
 }
@@ -17,7 +17,7 @@
 	border: none;
 	border-radius: 0;
 	background: #f0f0f0;
-	color: #aaa;
+	color: white;
 	font-weight: bold;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	-webkit-appearance: none; /* for box shadows to show on iOS */
@@ -32,7 +32,7 @@
 	float: right;
 	padding: 0 1em;
 	width: 40%;
-	color: #6a7989;
+	color: white;
 	font-weight: bold;
 	font-size: 70.25%;
 	-webkit-font-smoothing: antialiased;
@@ -76,8 +76,8 @@
 	padding: 0.4em 0.25em;
 	width: 100%;
 	background: transparent;
-	color: #AFB5BB;
-	font-size: 1.55em;
+	color: white;
+	font-size: 2.55em;
 }
 
 .input__label--haruki {
@@ -100,7 +100,7 @@
 	z-index: -1;
 	width: 100%;
 	height: 4px;
-	background: #6a7989;
+	background: orange;
 	-webkit-transition: -webkit-transform 0.3s;
 	transition: transform 0.3s;
 }

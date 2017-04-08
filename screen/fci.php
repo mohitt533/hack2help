@@ -204,31 +204,39 @@ if(isset($_SESSION['id'])){echo "<script>window.location.href='dashboard.php'</s
 <div class="container">
 <div class="row" style="padding-top:10px;padding-bottom:10px">
 
-<div class="row" style="height:200px">
-<div class="col-md-3">
-<h3 style="color:white"><center>District</center></h3><div class="row"><h3 style=""><center><?php $c = $db_handle->numRows("SELECT * FROM center "); echo $c;?></center></h3></div>
+<div class="row" >
+<div class="col-md-6">
+<h4 style="color:#e6ffff"><center>Number of Districts</center></h4><div class="row"><h5 style="color:#e6ccff"><center><?php $c = $db_handle->numRows("SELECT * FROM center "); echo $c;?></center></h5></div>
 </div>
-<div class="col-md-3">
-<h3 style="color:white"><center>Centers</center></h3><div class="row"><h3 style=""><center><?php $c = $db_handle->numRows("SELECT * FROM center "); echo $c;?></center></h3></div>
+<div class="col-md-6">
+<h4 style="color:#e6ffff"><center>Number of Centers</center></h4><div class="row"><h5 style="color:#e6ccff"><center><?php $c = $db_handle->numRows("SELECT * FROM center "); echo $c;?></center></h5></div>
 </div>
-<div class="col-md-3">
-<h3 style="color:white"><center>Avg. Production</center></h3><div class="row"><h3 style=""><center><?php 
-$q=mysqli_query($mysqli,"select avg(quantity) from crop group by cid");
-$row1=mysqli_fetch_assoc($q);
- echo $row1['avg(quantity)'];?></center></h3></div>
+<div class="col-md-12">
+<h4 style="color:white"><center>Country MSP</center></h4><div class="row">
+
+<center>
+<h5 style="color:white"><center>Tur</center></h5><div class="row"><h6 style="color:white"><center>Rs 5050</center></h6></div>
 </div>
-<div class="col-md-3">
-<h3 style="color:white"><center>Total Production</center></h3><div class="row"><h3 style=""><center><?php $q=mysqli_query($mysqli,"select sum(quantity) from crop group by cid");
-$row1=mysqli_fetch_assoc($q);
- echo $row1['sum(quantity)'];?></center></h3></div>
 </div>
+</center>
+
+
 </div>
 <?php
 
+$q=mysqli_query($mysqli,"select sum(area) from center");
+$rows=mysqli_fetch_assoc($q);
+$totala=$rows['sum(area)'];
 
+$q=mysqli_query($mysqli,"select sum(quantity) from crop");
+$rows=mysqli_fetch_assoc($q);
+$totalp=$rows['sum(quantity)'];
+
+$x=$totalp/$totala;
+$msp=5050;
 $q=mysqli_query($mysqli,"select * from center");
-echo"<center><div  id='product-grid' style='overflow:auto;overflow-y: hidden;'><table cellspacing='5' cellpadding='10' bgcolor='#CCCCCC'>
-<tr bgcolor='#3A3F44' height='30' style='color:white;' ><center><th><center>District</center><th><center>Area</center><th><center>Total Produce</center><th><center>Rainfall</center></th><th><center>Set MSP</center></th></tr>";
+echo"<center><div  id='product-grid' style='overflow:auto;overflow-y: hidden;margin-top:30px;'><table cellspacing='5' cellpadding='10' bgcolor='#CCCCCC'>
+<tr bgcolor='#3A3F44' height='30' style='color:white;' ><center><th><center>District</center><th><center>Area</center><th><center>Total Produce</center><th><center>Rainfall</center></th><th><center>Yield</center></th><th><center>Recommended MSP</center></th><th><center>Change MSP</center></th></tr>";
 				$c = $db_handle->numRows("SELECT * FROM center ");
 				
 if($c==0)
@@ -243,23 +251,69 @@ if($c==0)
     $rain=$rows["rain"];
     $district=$rows["district"];
 	$quant=0;
+	$i=1;
     $q1=mysqli_query($mysqli,"select * from crop where cid='$cid'");
 	while($rows1=mysqli_fetch_assoc($q1))
 	{
 		$quant+=$rows1["quantity"];
 	}
-	
-	
+	$y=$quant/$area;
+	$masp=$rows['msp'];
+	if($masp==0)
+	{$abc=$msp*($x/$y);
+	$a=mysqli_query($mysqli,"update center set msp='$abc' where cid='$cid'");
+	$masp=$abc;
+}
+	if($x>$y) {$z="Low";} else {$z= "High";}
 	echo"<tr height='35' bgcolor='white' padding='5px' '>
-    <td><center>$district</center><td><center>$area</center><td><center>$quant</center><td><center>$rain</center>
-    <td><center><form method='POST' action='rem.php'>
-				  <input type='hidden' name='bid' id='hiddenField' value='$cid' />
-					<input class='btn btn-success' type='submit' value='MSP' name='book' id='sub'></input></form><center>
-    </td></tr>";
+    <td><center>$district</center><td><center>$area</center><td><center>$quant</center><td><center>$rain</center><td><center>$z</center><td><center>$masp</center>
+    <td><center><button class='btn btn-success' data-toggle='modal' data-target='#myModal$i'>MSP
+	</button><center>
+    </td></tr>
+	";?>
+	<div id="myModal<?php echo$i;?>" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+     <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+							<div class="container-fluid">    
+							
+						<div id="loginbox" class="mainbox"> 
+							
+							
+							
+							<div class="panel panel-default" >
+								   
+
+								<div class="panel-body" >
+
+									<form method='POST' action='change.php'>
+				  <input type='hidden' name='cid' id='hiddenField' value='<?php echo $i;?>' />
+				  <input type='text' name='msp' placeholder='msp' required />
+					<input class='btn btn-success' type='submit' value='MSP' name='book' id='sub'></input></form>
+
+								</div>                     
+							</div>  
+						</div>
+					</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<?php
 
 
   }
-   echo"</table></div></center>
+   echo"</table></div></center>$i++;
    <br>
    
   ";

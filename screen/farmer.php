@@ -41,16 +41,7 @@ if(isset($_SESSION['id'])){echo "<script>window.location.href='dashboard.php'</s
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <!-- Material Design icon font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<style type="text/css" id="enject">.colorgraph {
-  height: 5px;
-  border-top: 0;
-  background: #c4e17f;
-  border-radius: 5px;
-  background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-  background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-  background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-  background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-}
+	<style type="text/css" id="enject">
 </style>
 	
 	
@@ -73,8 +64,7 @@ if(isset($_SESSION['id'])){echo "<script>window.location.href='dashboard.php'</s
 		 <ul class="nav navbar-nav">
 		 <li> </li>
 		 <li><a href="fci.php">Data</a></li>
-		 <li><a href="products.php">MSP's</a></li>
-		 <li><a href="products.php">Set MSP</a></li>
+		 <li><a href="bids.php">Bids</a></li>
 		 </ul>
 		
 		 
@@ -90,77 +80,84 @@ if(isset($_SESSION['id'])){echo "<script>window.location.href='dashboard.php'</s
 
 <div class="row" style="height:200px">
 <div class="col-md-4">
-<h3 style="color:white"><center>District Name</center></h3><div class="row"><h3 style=""><center><?php $c = $db_handle->numRows("SELECT * FROM center "); echo $c;?></center></h3></div>
+<h3 style="color:white"><center>District Name</center></h3><div class="row"><h3 style="color:orange"><center><?php $q=mysqli_query($mysqli,"select district from center where cid=1");
+$row1=mysqli_fetch_assoc($q);
+ echo $row1['district'];?></center></h3></div>
 </div>
 <div class="col-md-4">
-<h3 style="color:white"><center>Area</center></h3><div class="row"><h3 style=""><center><?php $c = $db_handle->numRows("SELECT * FROM center "); echo $c;?></center></h3></div>
+<h3 style="color:white"><center>Area</center></h3><div class="row"><h3 style="color:orange"><center><?php $q=mysqli_query($mysqli,"select area from center where cid=1");
+$row1=mysqli_fetch_assoc($q);
+ echo $row1['area'];?> sq.km</center></h3></div>
 </div>
 
 <div class="col-md-4">
-<h3 style="color:white"><center>Total Production</center></h3><div class="row"><h3 style=""><center><?php $q=mysqli_query($mysqli,"select sum(quantity) from crop group by cid");
+<h3 style="color:white"><center>Total Production</center></h3><div class="row"><h3 style="color:orange"><center><?php $q=mysqli_query($mysqli,"select sum(quantity) from crop group by cid having cid=1");
 $row1=mysqli_fetch_assoc($q);
  echo $row1['sum(quantity)'];?></center></h3></div>
 </div>
-<div style="margin-bottom:50px">
-<h1 style="color:white"><center>Elegant Contact Form</center></h1>
-<form >
+</div>
+<section>
+<div class="row">
+<center><div style="margin-bottom:50px;font-color:white">
+<h1 style="color:white"><center>Farmer's Crop Center</center></h1>
+<form method="post" action="add.php">
   <span class="input input--haruki">
-					<input class="input__field input__field--haruki" type="text" id="input-1" />
+					<input class="input__field input__field--haruki" type="text" name="farmer" id="input-1" />
 					<label class="input__label input__label--haruki" for="input-1">
-						<span class="input__label-content input__label-content--haruki">First Name</span>
+						<center><span class="input__label-content input__label-content--haruki">Farmer Name</span></center>
 					</label>
 				</span>
 	<span class="input input--haruki">
-					<input class="input__field input__field--haruki" type="text" id="input-1" />
+					<input class="input__field input__field--haruki" type="text" name="crop" id="input-1" />
 					<label class="input__label input__label--haruki" for="input-1">
-						<span class="input__label-content input__label-content--haruki">First Name</span>
+						<center><span class="input__label-content input__label-content--haruki">Crop</span></center>
 					</label>
 				</span>
 	<span class="input input--haruki">
-					<input class="input__field input__field--haruki" type="text" id="input-1" style="color:green" />
+					<input class="input__field input__field--haruki" type="text" id="input-1" name="quantity" style="color:green" />
 					<label class="input__label input__label--haruki" for="input-1">
-						<span class="input__label-content input__label-content--haruki">First Name</span>
+						<center><span class="input__label-content input__label-content--haruki">Quantity</span></center>
+					</label>
+				</span>
+				<span class="input input--haruki">
+					<input class="input__field input__field--haruki" type="text" id="input-1" name="aadhar" style="color:green" />
+					<label class="input__label input__label--haruki" for="input-1">
+						<center><span class="input__label-content input__label-content--haruki">Aadhar Number</span></center>
 					</label>
 				</span>
    <div style="padding:10px"> 
- <center><button type="button" class="btn btn-success">Success</button></center>
+ <center><input type="submit" value="ADD" class="btn btn-success"/></center>
   </div>
 </form>
-</div>
+</div></center>
 
 </div>
 <?php
+$cid=1;
 
-
-$q=mysqli_query($mysqli,"select * from center");
+$q=mysqli_query($mysqli,"select * from crop where cid='$cid'");
 echo"<center><div  id='product-grid' style='overflow:auto;overflow-y: hidden;'><table cellspacing='5' cellpadding='10' bgcolor='#CCCCCC'>
-<tr bgcolor='#3A3F44' height='30' style='color:white;' ><center><th><center>District</center><th><center>Area</center><th><center>Total Produce</center><th><center>Rainfall</center></th><th><center>Set MSP</center></th></tr>";
-				$c = $db_handle->numRows("SELECT * FROM center ");
+<tr bgcolor='#3A3F44' height='30' style='color:white;' ><center><th><center>Farmer Name</center><th><center>Crop</center><th><center>quantity</center></th><th><center>Remove</center></th></tr>";
+				$c = $db_handle->numRows("SELECT * FROM crop where cid='$cid' ");
 				
 if($c==0)
 {
-	 echo"<tr  height='35' bgcolor='white'><td colspan='10'><center>No Centers Open yet</center>
+	 echo"<tr  height='35' bgcolor='white'><td colspan='10'><center>No Crops Harveseted yet</center>
     </td></tr>";
 }
   while($rows=mysqli_fetch_assoc($q))
   {
-    $cid=$rows["cid"];
-    $area=$rows["area"];
-    $rain=$rows["rain"];
-    $district=$rows["district"];
-	$quant=0;
-    $q1=mysqli_query($mysqli,"select * from crop where cid='$cid'");
-	while($rows1=mysqli_fetch_assoc($q1))
-	{
-		$quant+=$rows1["quantity"];
-	}
+    $farmer=$rows["farmer"];
+    $crop=$rows["crop"];
+    $quantity=$rows["quantity"];
+    $crid=$rows["crid"];
 	
 	
 	echo"<tr height='35' bgcolor='white' padding='5px' '>
-    <td><center>$district</center><td><center>$area</center><td><center>$quant</center><td><center>$rain</center>
+    <td><center>$farmer</center><td><center>$crop</center><td><center>$quantity</center>
     <td><center><form method='POST' action='rem.php'>
-				  <input type='hidden' name='bid' id='hiddenField' value='$cid' />
-					<input class='btn btn-success' type='submit' value='MSP' name='book' id='sub'></input></form><center>
+				  <input type='hidden' name='crid' id='hiddenField' value='$crid' />
+					<input class='btn btn-danger' type='submit' value='X' name='crop' id='sub'></input></form><center>
     </td></tr>";
 
 
