@@ -1,14 +1,15 @@
 ﻿<?php
 session_start();require_once("dbcontroller.php");
-require("fusioncharts/fusioncharts.php");
+
 $db_handle = new DBController();
 require'db_conn.php';
-if(isset($_SESSION['id'])){echo "<script>window.location.href='dashboard.php'</script>";}
+if(!isset($_SESSION['cid'])){echo "<script>window.location.href='index.php'</script>";}
+$cid=$_SESSION['cid'];
 ?><!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>BooksBite:Register</title>
+    <title>Center</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -63,10 +64,12 @@ if(isset($_SESSION['id'])){echo "<script>window.location.href='dashboard.php'</s
         <div class="collapse navbar-collapse" id="navbar-collapse">
 		 <ul class="nav navbar-nav">
 		 <li> </li>
-		 <li><a href="fci.php">Data</a></li>
+		  <li><a href="farmer.php">Entry</a></li>
 		 <li><a href="bids.php">Bids</a></li>
 		 </ul>
-		
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="logout.php">Logout</a></li>
+			</ul>
 		 
          
 		  
@@ -80,18 +83,18 @@ if(isset($_SESSION['id'])){echo "<script>window.location.href='dashboard.php'</s
 
 <div class="row" style="height:200px">
 <div class="col-md-4">
-<h3 style="color:white"><center>District Name</center></h3><div class="row"><h3 style="color:orange"><center><?php $q=mysqli_query($mysqli,"select district from center where cid=1");
+<h3 style="color:white"><center>District Name</center></h3><div class="row"><h3 style="color:orange"><center><?php $q=mysqli_query($mysqli,"select district from center where cid='$cid'");
 $row1=mysqli_fetch_assoc($q);
  echo $row1['district'];?></center></h3></div>
 </div>
 <div class="col-md-4">
-<h3 style="color:white"><center>Area</center></h3><div class="row"><h3 style="color:orange"><center><?php $q=mysqli_query($mysqli,"select area from center where cid=1");
+<h3 style="color:white"><center>Area</center></h3><div class="row"><h3 style="color:orange"><center><?php $q=mysqli_query($mysqli,"select area from center where cid='$cid'");
 $row1=mysqli_fetch_assoc($q);
  echo $row1['area'];?> sq.km</center></h3></div>
 </div>
 
 <div class="col-md-4">
-<h3 style="color:white"><center>Total Production</center></h3><div class="row"><h3 style="color:orange"><center><?php $q=mysqli_query($mysqli,"select sum(quantity) from crop group by cid having cid=1");
+<h3 style="color:white"><center>Total Production</center></h3><div class="row"><h3 style="color:orange"><center><?php $q=mysqli_query($mysqli,"select sum(quantity) from crop group by cid having cid='$cid'");
 $row1=mysqli_fetch_assoc($q);
  echo $row1['sum(quantity)'];?></center></h3></div>
 </div>
@@ -133,7 +136,6 @@ $row1=mysqli_fetch_assoc($q);
 
 </div>
 <?php
-$cid=1;
 
 $q=mysqli_query($mysqli,"select * from crop where cid='$cid'");
 echo"<center><div  id='product-grid' style='overflow:auto;overflow-y: hidden;'><table cellspacing='5' cellpadding='10' bgcolor='#CCCCCC'>

@@ -6,7 +6,7 @@ ob_start();
 $ref=$_SERVER['HTTP_REFERER'];
 echo "<script>
 alert('Logged Out');
-window.location.href='$ref';
+window.location.href='index.php';
 </script>";
 ob_end_flush();
 exit();

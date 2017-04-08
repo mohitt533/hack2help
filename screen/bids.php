@@ -2,6 +2,9 @@
 session_start();require_once("dbcontroller.php");
 $db_handle = new DBController();
 require'db_conn.php';
+if(!isset($_SESSION['cid'])){echo "<script>window.location.href='index.php'</script>";}
+
+$cid=$_SESSION['cid'];
 ?><!DOCTYPE html>
 <html lang="en">
   <head>
@@ -61,10 +64,12 @@ require'db_conn.php';
         <div class="collapse navbar-collapse" id="navbar-collapse">
 		 <ul class="nav navbar-nav">
 		 <li> </li>
-		 <li><a href="fci.php">Data</a></li>
+		 <li><a href="farmer.php">Entry</a></li>
 		 <li><a href="bids.php">Bids</a></li>
 		 </ul>
-		
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="logout.php">Logout</a></li>
+			</ul>
 		 
          
 		  
@@ -78,27 +83,27 @@ require'db_conn.php';
 
 <div class="row" style="height:200px">
 <div class="col-md-4">
-<h3 style="color:white"><center>District Name</center></h3><div class="row"><h3 style="color:orange"><center><?php $q=mysqli_query($mysqli,"select district from center where cid=1");
+<h3 style="color:white"><center>District Name</center></h3><div class="row"><h3 style="color:orange"><center><?php $q=mysqli_query($mysqli,"select district from center where cid='$cid'");
 $row1=mysqli_fetch_assoc($q);
  echo $row1['district'];?></center></h3></div>
 </div>
 <div class="col-md-4">
-<h3 style="color:white"><center>Area</center></h3><div class="row"><h3 style="color:orange"><center><?php $q=mysqli_query($mysqli,"select area from center where cid=1");
+<h3 style="color:white"><center>Area</center></h3><div class="row"><h3 style="color:orange"><center><?php $q=mysqli_query($mysqli,"select area from center where cid='$cid'");
 $row1=mysqli_fetch_assoc($q);
  echo $row1['area'];?> sq.km</center></h3></div>
 </div>
 
 <div class="col-md-4">
-<h3 style="color:white"><center>Total Production</center></h3><div class="row"><h3 style="color:orange"><center><?php $q=mysqli_query($mysqli,"select sum(quantity) from crop group by cid having cid=1");
+<h3 style="color:white"><center>Total Production</center></h3><div class="row"><h3 style="color:orange"><center><?php $q=mysqli_query($mysqli,"select sum(quantity) from crop group by cid having cid='$cid'");
 $row1=mysqli_fetch_assoc($q);
  echo $row1['sum(quantity)'];?></center></h3></div>
 </div>
 </div>
 <div class="col-md-4 col-md-offset-4">
-<h3 style="color:white"><center>Remaining Production</center></h3><div class="row"><h3 style="color:orange"><center><?php $q=mysqli_query($mysqli,"select sum(quantity) from crop group by cid having cid=1");
+<h3 style="color:white"><center>Remaining Production</center></h3><div class="row"><h3 style="color:orange"><center><?php $q=mysqli_query($mysqli,"select sum(quantity) from crop group by cid having cid='$cid'");
 $row1=mysqli_fetch_assoc($q);
  $quat=$row1['sum(quantity)'];
- $q=mysqli_query($mysqli,"select sum(quantity) from bid group by cid having cid=1 and cid in(SELECT cid from bid where status=1)");
+ $q=mysqli_query($mysqli,"select sum(quantity) from bid group by cid having cid='$cid' and cid in(SELECT cid from bid where status=1)");
 $row1=mysqli_fetch_assoc($q);
  $min=$row1['sum(quantity)'];
  echo $quat-$min;?></center></h3></div>
@@ -114,21 +119,23 @@ echo"<center><div  id='product-grid' style='overflow:auto;overflow-y: hidden;'><
 				
 if($c==0)
 {
-	 echo"<tr  height='35' bgcolor='white'><td colspan='10'><center>No Crops Harveseted yet</center>
+	 echo"<tr  height='35' bgcolor='white'><td colspan='10'><center>No Bids made yet</center>
     </td></tr>";
 }
   while($rows=mysqli_fetch_assoc($q))
   {
-    $farmer=$rows["farmer"];
-    $crop=$rows["crop"];
+    $comid=$rows["comid"];
+    $bid=$rows["bid"];
     $quantity=$rows["quantity"];
-    $crid=$rows["crid"];
-	
-	
+    $crop=$rows["crop"];
+	$price=$rows["price"];
+	$f=mysqli_query($mysqli,"select * from company where comid='$comid'");
+	$rows2=mysqli_fetch_assoc($q);
+	$company=$rows2['company'];
 	echo"<tr height='35' bgcolor='white' padding='5px' '>
-    <td><center>$farmer</center><td><center>$crop</center><td><center>$quantity</center>
+    <td><center>$company</center><td><center>$crop</center><td><center>$quantity</center><td><center>$price</center>
     <td><center><form method='POST' action='app.php'>
-				  <input type='hidden' name='crid' id='hiddenField' value='$crid' />
+				  <input type='hidden' name='bid' id='hiddenField' value='$crid' />
 					<input class='btn btn-danger' type='submit' value='X' name='crop' id='sub'></input></form><center>
     </td></tr>";
 

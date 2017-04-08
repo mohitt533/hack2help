@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Screen - Multipurpose Template By Bootstrapious.com</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -86,41 +85,30 @@ color:white;
      <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">FCI Login</h4>
       </div>
       <div class="modal-body">
 							<div class="container-fluid">    
 							
 						<div id="loginbox" class="mainbox"> 
-							
-							
-							
 							<div class="panel panel-default" >
-								   
-
 								<div class="panel-body" >
-
-									<form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
-									   
+							<form name="form" action="log.php" class="form-horizontal" enctype="multipart/form-data" method="POST">
 										<div class="input-group">
 											<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-											<input id="user" type="text" class="form-control" name="user" value="" placeholder="User">                                        
+											<input id="user" type="text" class="form-control" name="username" value="" placeholder="Username">                                        
 										</div>
-
 										<div class="input-group">
 											<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 											<input id="password" type="password" class="form-control" name="password" placeholder="Password">
 										</div>                                                                  
-
 										<div class="form-group">
 											<!-- Button -->
 											<div class="col-sm-12 controls">
-												<button type="submit" href="#" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i> Log in</button>                          
+												<input type="submit" value="Login" name="fci">                          
 											</div>
 										</div>
-
 									</form>     
-
 								</div>                     
 							</div>  
 						</div>
@@ -151,7 +139,7 @@ color:white;
      <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">Center Login</h4>
       </div>
       <div class="modal-body">
 							<div class="container-fluid">    
@@ -165,25 +153,21 @@ color:white;
 
 								<div class="panel-body" >
 
-									<form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
-									   
+									<form name="form" action="log.php" class="form-horizontal" enctype="multipart/form-data" method="POST">
 										<div class="input-group">
 											<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-											<input id="user" type="text" class="form-control" name="user" value="" placeholder="User">                                        
+											<input id="user" type="text" class="form-control" name="username" value="" placeholder="Username">                                        
 										</div>
-
 										<div class="input-group">
 											<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 											<input id="password" type="password" class="form-control" name="password" placeholder="Password">
 										</div>                                                                  
-
 										<div class="form-group">
 											<!-- Button -->
 											<div class="col-sm-12 controls">
-												<button type="submit" href="#" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i> Log in</button>                          
+												<input type="submit" value="Login" name="center">                          
 											</div>
 										</div>
-
 									</form>     
 
 								</div>                     
