@@ -27,7 +27,13 @@ $cid=$_SESSION['cid'];
 	<link href="css/set1.css" rel="stylesheet" type="text/css">
 	
 	<script src="themes/js/custom2.js"></script>
-	<style type="text/css" id="enject">th, td { min-width: 100px; }</style>
+	<style type="text/css" id="enject">th, td { min-width: 100px; }input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}</style>
 	
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -105,25 +111,25 @@ $row1=mysqli_fetch_assoc($q);
 <h1 style="color:white"><center>Farmer's Crop Center</center></h1>
 <form method="post" action="add.php">
   <span class="input input--haruki">
-					<input class="input__field input__field--haruki" type="text" name="farmer" id="input-1" />
+					<input class="input__field input__field--haruki" type="text" name="farmer" id="input-1" required/>
 					<label class="input__label input__label--haruki" for="input-1">
 						<center><span class="input__label-content input__label-content--haruki">Farmer Name</span></center>
 					</label>
 				</span>
 	<span class="input input--haruki">
-					<input class="input__field input__field--haruki" type="text" name="crop" id="input-1" />
+					<input class="input__field input__field--haruki" type="text" name="crop" id="input-1" required/>
 					<label class="input__label input__label--haruki" for="input-1">
 						<center><span class="input__label-content input__label-content--haruki">Crop</span></center>
 					</label>
 				</span>
 	<span class="input input--haruki">
-					<input class="input__field input__field--haruki" type="text" id="input-1" name="quantity" style="color:green" />
+					<input class="input__field input__field--haruki" type="number" id="input-1" name="quantity"  required />
 					<label class="input__label input__label--haruki" for="input-1">
 						<center><span class="input__label-content input__label-content--haruki">Quantity</span></center>
 					</label>
 				</span>
 				<span class="input input--haruki">
-					<input class="input__field input__field--haruki" type="text" id="input-1" name="aadhar" style="color:green" />
+					<input class="input__field input__field--haruki" type="number" id="input-1" name="aadhar"  required/>
 					<label class="input__label input__label--haruki" for="input-1">
 						<center><span class="input__label-content input__label-content--haruki">Aadhar Number</span></center>
 					</label>

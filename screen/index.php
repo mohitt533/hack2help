@@ -188,7 +188,7 @@ color:white;
               </div>
             </div>
           </div>
-          <a href=#page5 class="icon faa-float animated"><i class="fa fa-angle-double-down"></i></a>
+          <div class="icon faa-float animated"><i class="fa fa-angle-double-down"></i></div>
         </section>
 		
 		
@@ -266,11 +266,11 @@ color:white;
                             <input type="email" name="email" placeholder="Enter your  email" required="required" class="form-control">
                           </div>
                           <div class="form-group">
-                            <label for="surname">Your ideas for a change *</label>
+                            <label for="surname">Your message for us *</label>
                             <textarea rows="4" name="message" placeholder="Enter your message" required="required" class="form-control"></textarea>
                           </div>
                           <div class="text-center">
-                            <input type="submit" name="name" value="Make change" class="btn btn-primary btn-block">
+                            <input type="submit" name="name" value="Send message" class="btn btn-primary btn-block">
                           </div>
                         </div>
                       </form>
@@ -282,10 +282,10 @@ color:white;
                   </div>
                   <div class="row copyright">
                     <div class="col-md-6">
-                      <p>&copy;2015 Your name/company goes here</p>
+                      
                     </div>
                     <div class="col-md-6">
-                      <p class="credit">Code by <a href="https://bootstrapious.com/portfolio-themes">Bootstrapious</a></p>
+                      <p class="credit">Code by <a href="https://bootstrapious.com/portfolio-themes">HACKSLASH</a></p>
                        <!-- Not removing these links is part of the license conditions of the template. Thanks for understanding :) If you want to use the template without the attribution links, you can do so after supporting further themes development at https://bootstrapious.com/donate  -->
                     </div>
                   </div>
