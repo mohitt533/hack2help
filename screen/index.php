@@ -188,7 +188,7 @@ color:white;
               </div>
             </div>
           </div>
-          <div class="icon faa-float animated"><i class="fa fa-angle-double-down"></i></div>
+          <a href=#page5 class="icon faa-float animated"><i class="fa fa-angle-double-down"></i></a>
         </section>
 		
 		
@@ -223,9 +223,8 @@ color:white;
               <div class="row">
                 <div class="col-md-6"> 
                   <h2 class="heading">About us</h2>
-                  <p class="lead">This can be an about section or anything else ;)</p>
-                  <p>Impossible considered invitation him men instrument saw celebrated unpleasant. Put rest and must set kind next many near nay. He exquisite continued explained middleton am. Voice hours young woody has she think equal. Estate moment he at on wonder at season little. Six garden result summer set family esteem nay estate. End admiration mrs unreserved discovered comparison especially invitation. </p>
-                  <p>Delightful unreserved impossible few estimating men favourable see entreaties. She propriety immediate was improving. He or entrance humoured likewise moderate. Much nor game son say feel. Fat make met can must form into gate. Me we offending prevailed discovery. </p>
+                  <p class="lead">We believe that we dont need an army to make a change. <i class="fa fa-smile-o" aria-hidden="true"></i></p>
+                  <p>We, at GreenSky, have a lot of faith in our country’s potential and strongly believe that making the right information available to our farmers, regarding best practices and market prices, having a set of people dedicated to guide them at every step, can make the farmers achieve much better yields, higher profits and hence improve their conditions.</p>
                 </div>
                 <div class="col-md-5 col-md-offset-1">
                   <p><img src="img/about.jpg" alt="" style="height:500px;width:500px;" class="img-responsive img-circle"></p>
@@ -267,18 +266,17 @@ color:white;
                             <input type="email" name="email" placeholder="Enter your  email" required="required" class="form-control">
                           </div>
                           <div class="form-group">
-                            <label for="surname">Your message for us *</label>
+                            <label for="surname">Your ideas for a change *</label>
                             <textarea rows="4" name="message" placeholder="Enter your message" required="required" class="form-control"></textarea>
                           </div>
                           <div class="text-center">
-                            <input type="submit" name="name" value="Send message" class="btn btn-primary btn-block">
+                            <input type="submit" name="name" value="Make change" class="btn btn-primary btn-block">
                           </div>
                         </div>
                       </form>
                     </div>
                     <div class="col-md-6">
-                      <p>Effects present letters inquiry no an removed or friends. Desire behind latter me though in. Supposing shameless am he engrossed up additions. My possible peculiar together to. Desire so better am cannot he up before points. Remember mistaken opinions it pleasure of debating. Court front maids forty if aware their at. Chicken use are pressed removed. </p>
-                      <p>Able an hope of body. Any nay shyness article matters own removal nothing his forming. Gay own additions education satisfied the perpetual. If he cause manor happy. Without farther she exposed saw man led. Along on happy could cease green oh. </p>
+                      <p>We hope that we can bring about a positive change in the current situation of agriculture in the country and put India at its rightful position. And for that every positive thought makes a great differece. </p>
                       <p class="social"><a href="#" title="" class="facebook"><i class="fa fa-facebook"></i></a><a href="#" title="" class="twitter"><i class="fa fa-twitter"></i></a><a href="#" title="" class="gplus"><i class="fa fa-google-plus"></i></a><a href="#" title="" class="instagram"><i class="fa fa-instagram"></i></a><a href="#" title="" class="email"><i class="fa fa-envelope"></i></a></p>
                     </div>
                   </div>
